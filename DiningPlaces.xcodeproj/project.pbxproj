@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		972DC1181C8C28DC00606466 /* FavouritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 972DC1171C8C28DC00606466 /* FavouritesViewController.m */; };
 		972DC11B1C8C2B6100606466 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 972DC1191C8C2B6100606466 /* Model.xcdatamodeld */; };
+		972DC1241C8CCDED00606466 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 972DC1231C8CCDED00606466 /* SettingsViewController.m */; };
 		97AAB76C1C8BDD0400FD3E5C /* VenueCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 97AAB76B1C8BDD0400FD3E5C /* VenueCell.m */; };
 		97B5E6D21C8BB9CD000B4554 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 97B5E6D11C8BB9CD000B4554 /* main.m */; };
 		97B5E6D51C8BB9CD000B4554 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 97B5E6D41C8BB9CD000B4554 /* AppDelegate.m */; };
@@ -36,6 +37,8 @@
 		972DC1161C8C28DC00606466 /* FavouritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavouritesViewController.h; sourceTree = "<group>"; };
 		972DC1171C8C28DC00606466 /* FavouritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavouritesViewController.m; sourceTree = "<group>"; };
 		972DC11A1C8C2B6100606466 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		972DC1221C8CCDED00606466 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		972DC1231C8CCDED00606466 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		97AAB76A1C8BDD0400FD3E5C /* VenueCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VenueCell.h; sourceTree = "<group>"; };
 		97AAB76B1C8BDD0400FD3E5C /* VenueCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueCell.m; sourceTree = "<group>"; };
 		97B5E6CD1C8BB9CD000B4554 /* DiningPlaces.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiningPlaces.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -117,6 +120,8 @@
 				97AAB76B1C8BDD0400FD3E5C /* VenueCell.m */,
 				972DC1161C8C28DC00606466 /* FavouritesViewController.h */,
 				972DC1171C8C28DC00606466 /* FavouritesViewController.m */,
+				972DC1221C8CCDED00606466 /* SettingsViewController.h */,
+				972DC1231C8CCDED00606466 /* SettingsViewController.m */,
 			);
 			path = DiningPlaces;
 			sourceTree = "<group>";
@@ -246,6 +251,7 @@
 				972DC1181C8C28DC00606466 /* FavouritesViewController.m in Sources */,
 				972DC11B1C8C2B6100606466 /* Model.xcdatamodeld in Sources */,
 				97B5E6DB1C8BB9CD000B4554 /* DetailViewController.m in Sources */,
+				972DC1241C8CCDED00606466 /* SettingsViewController.m in Sources */,
 				97B5E6FD1C8BBC93000B4554 /* Transport.m in Sources */,
 				97AAB76C1C8BDD0400FD3E5C /* VenueCell.m in Sources */,
 			);

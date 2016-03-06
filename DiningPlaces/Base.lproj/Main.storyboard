@@ -103,6 +103,7 @@
                     <connections>
                         <segue destination="Gtw-VZ-EKQ" kind="relationship" relationship="viewControllers" id="0lT-dJ-1GZ"/>
                         <segue destination="BdQ-fo-K7B" kind="relationship" relationship="viewControllers" id="Ibb-AB-4Ek"/>
+                        <segue destination="CHB-z7-FTB" kind="relationship" relationship="viewControllers" id="XHG-nb-gf4"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p8G-ao-KIH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -125,6 +126,74 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="akT-bb-c60" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-505" y="-150"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="jk7-FN-zzF">
+            <objects>
+                <viewController id="CHB-z7-FTB" customClass="SettingsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9fA-Kv-hSS"/>
+                        <viewControllerLayoutGuide type="bottom" id="uGj-7W-cpq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gKx-od-XJg">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set a filter for radius" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jVV-50-rqe">
+                                <rect key="frame" x="222.5" y="44" width="155" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="25" minValue="0.0" maxValue="50" translatesAutoresizingMaskIntoConstraints="NO" id="FhU-zR-kxF">
+                                <rect key="frame" x="148" y="93" width="304" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="HUN-cS-rhP"/>
+                                    <constraint firstAttribute="width" constant="300" id="iMm-nB-3VS"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="sliderValueChanged:" destination="CHB-z7-FTB" eventType="valueChanged" id="q4g-j4-kVB"/>
+                                </connections>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25 miles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DSm-E3-PCy">
+                                <rect key="frame" x="271" y="138" width="58" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ilh-iU-TjA">
+                                <rect key="frame" x="261" y="204" width="78" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="TVC-hf-lK2"/>
+                                    <constraint firstAttribute="width" constant="78" id="z2M-Z0-3ok"/>
+                                </constraints>
+                                <state key="normal" title="Apply Filter"/>
+                                <connections>
+                                    <action selector="applyFilterPressed:" destination="CHB-z7-FTB" eventType="touchUpInside" id="5Uc-IO-LMd"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="jVV-50-rqe" firstAttribute="centerX" secondItem="gKx-od-XJg" secondAttribute="centerX" id="GBR-q2-Yi5"/>
+                            <constraint firstItem="DSm-E3-PCy" firstAttribute="top" secondItem="FhU-zR-kxF" secondAttribute="bottom" constant="15" id="LIx-tw-d8n"/>
+                            <constraint firstItem="FhU-zR-kxF" firstAttribute="centerX" secondItem="gKx-od-XJg" secondAttribute="centerX" id="QJt-HK-GPa"/>
+                            <constraint firstItem="Ilh-iU-TjA" firstAttribute="centerX" secondItem="gKx-od-XJg" secondAttribute="centerX" id="SNs-EK-bZO"/>
+                            <constraint firstItem="jVV-50-rqe" firstAttribute="top" secondItem="9fA-Kv-hSS" secondAttribute="bottom" constant="24" id="WLU-ny-hVc"/>
+                            <constraint firstItem="Ilh-iU-TjA" firstAttribute="top" secondItem="DSm-E3-PCy" secondAttribute="bottom" constant="48" id="b0W-kD-4PK"/>
+                            <constraint firstItem="DSm-E3-PCy" firstAttribute="centerX" secondItem="gKx-od-XJg" secondAttribute="centerX" id="gVU-S1-1p4"/>
+                            <constraint firstItem="FhU-zR-kxF" firstAttribute="top" secondItem="jVV-50-rqe" secondAttribute="bottom" constant="28" id="m69-Tr-Ngu"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Settings" image="second" id="Hd0-2V-E0o"/>
+                    <connections>
+                        <outlet property="distanceSlider" destination="FhU-zR-kxF" id="v3d-Ie-SFp"/>
+                        <outlet property="filterRadius" destination="DSm-E3-PCy" id="IPo-tJ-JTJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gpz-PW-ov8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-505" y="533"/>
         </scene>
         <!--Item-->
         <scene sceneID="vrc-aF-2ma">
@@ -257,6 +326,9 @@
             <point key="canvasLocation" x="935" y="-673"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="second" width="30" height="30"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="9Mv-WR-0U3"/>
     </inferredMetricsTieBreakers>

@@ -13,6 +13,7 @@
 #import "VenueCell.h"
 #import <CoreLocation/CoreLocation.h>
 #import "DetailViewController.h"
+#import "AppDelegate.h"
 
 
 #define kCLIENTID @"2M4QBWYTS5GO3EJGQYK3USK5XM0JZ0SFBELQBQPAKUFKXQ2L"
@@ -25,6 +26,7 @@
 @property (nonatomic, strong) CLLocation * currentLocation;
 @property (nonatomic, strong) NSIndexPath * selectedIndexpath;
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
+@property (nonatomic, strong) NSMutableArray<Venue*> * filteredVenueList;
 
 @end
 
@@ -56,8 +58,18 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    self.clearsSelectionOnViewWillAppear = self.splitViewController.isCollapsed;
     [super viewWillAppear:animated];
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    if(appDelegate.filterRadiusValue) {
+        self.filteredVenueList = [NSMutableArray array];
+        NSInteger radius = [appDelegate.filterRadiusValue integerValue] * 1000;
+        for (Venue * item in self.venues) {
+            if ([item.distance integerValue] <= radius) {
+                [self.filteredVenueList addObject:item];
+            }
+        }
+        [self.tableView reloadData];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -115,6 +127,9 @@
     [self.venues sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
         return [[obj1 distance] compare:[obj2 distance]];
     }];
+    if (!self.filteredVenueList) {
+        self.filteredVenueList = [[NSMutableArray alloc] initWithArray:self.venues];
+    }
 }
 
 #pragma locationManager
@@ -132,7 +147,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         DetailViewController * deatailVC = [segue destinationViewController];
-        deatailVC.venue = self.venues[self.selectedIndexpath.row];
+        deatailVC.venue = self.filteredVenueList[self.selectedIndexpath.row];
     }
 }
 
@@ -143,12 +158,12 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.venues.count;
+    return self.filteredVenueList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     VenueCell *cell = (VenueCell*)[tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    Venue * venueItem = [self.venues objectAtIndex:indexPath.row];
+    Venue * venueItem = [self.filteredVenueList objectAtIndex:indexPath.row];
     cell.venueName.text = venueItem.name;
     cell.venueAddresss.text = venueItem.address;
     float miles = [venueItem.distance integerValue] / 1000.0;
