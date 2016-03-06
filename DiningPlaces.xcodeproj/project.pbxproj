@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		97AAB76C1C8BDD0400FD3E5C /* VenueCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 97AAB76B1C8BDD0400FD3E5C /* VenueCell.m */; };
 		97B5E6D21C8BB9CD000B4554 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 97B5E6D11C8BB9CD000B4554 /* main.m */; };
 		97B5E6D51C8BB9CD000B4554 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 97B5E6D41C8BB9CD000B4554 /* AppDelegate.m */; };
 		97B5E6D81C8BB9CD000B4554 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97B5E6D71C8BB9CD000B4554 /* MasterViewController.m */; };
@@ -15,6 +16,8 @@
 		97B5E6E01C8BB9CD000B4554 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97B5E6DF1C8BB9CD000B4554 /* Assets.xcassets */; };
 		97B5E6E31C8BB9CD000B4554 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97B5E6E11C8BB9CD000B4554 /* LaunchScreen.storyboard */; };
 		97B5E6EE1C8BB9CD000B4554 /* DiningPlacesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 97B5E6ED1C8BB9CD000B4554 /* DiningPlacesTests.m */; };
+		97B5E6FA1C8BBB60000B4554 /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = 97B5E6F91C8BBB60000B4554 /* Venue.m */; };
+		97B5E6FD1C8BBC93000B4554 /* Transport.m in Sources */ = {isa = PBXBuildFile; fileRef = 97B5E6FC1C8BBC93000B4554 /* Transport.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,6 +31,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		97AAB76A1C8BDD0400FD3E5C /* VenueCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VenueCell.h; sourceTree = "<group>"; };
+		97AAB76B1C8BDD0400FD3E5C /* VenueCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueCell.m; sourceTree = "<group>"; };
 		97B5E6CD1C8BB9CD000B4554 /* DiningPlaces.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiningPlaces.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97B5E6D11C8BB9CD000B4554 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		97B5E6D31C8BB9CD000B4554 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -43,6 +48,10 @@
 		97B5E6E91C8BB9CD000B4554 /* DiningPlacesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DiningPlacesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		97B5E6ED1C8BB9CD000B4554 /* DiningPlacesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiningPlacesTests.m; sourceTree = "<group>"; };
 		97B5E6EF1C8BB9CD000B4554 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		97B5E6F81C8BBB60000B4554 /* Venue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Venue.h; sourceTree = "<group>"; };
+		97B5E6F91C8BBB60000B4554 /* Venue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Venue.m; sourceTree = "<group>"; };
+		97B5E6FB1C8BBC93000B4554 /* Transport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transport.h; sourceTree = "<group>"; };
+		97B5E6FC1C8BBC93000B4554 /* Transport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Transport.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +93,8 @@
 		97B5E6CF1C8BB9CD000B4554 /* DiningPlaces */ = {
 			isa = PBXGroup;
 			children = (
+				97B5E6FB1C8BBC93000B4554 /* Transport.h */,
+				97B5E6FC1C8BBC93000B4554 /* Transport.m */,
 				97B5E6D31C8BB9CD000B4554 /* AppDelegate.h */,
 				97B5E6D41C8BB9CD000B4554 /* AppDelegate.m */,
 				97B5E6D61C8BB9CD000B4554 /* MasterViewController.h */,
@@ -95,6 +106,10 @@
 				97B5E6E11C8BB9CD000B4554 /* LaunchScreen.storyboard */,
 				97B5E6E41C8BB9CD000B4554 /* Info.plist */,
 				97B5E6D01C8BB9CD000B4554 /* Supporting Files */,
+				97B5E6F81C8BBB60000B4554 /* Venue.h */,
+				97B5E6F91C8BBB60000B4554 /* Venue.m */,
+				97AAB76A1C8BDD0400FD3E5C /* VenueCell.h */,
+				97AAB76B1C8BDD0400FD3E5C /* VenueCell.m */,
 			);
 			path = DiningPlaces;
 			sourceTree = "<group>";
@@ -219,7 +234,10 @@
 				97B5E6D51C8BB9CD000B4554 /* AppDelegate.m in Sources */,
 				97B5E6D81C8BB9CD000B4554 /* MasterViewController.m in Sources */,
 				97B5E6D21C8BB9CD000B4554 /* main.m in Sources */,
+				97B5E6FA1C8BBB60000B4554 /* Venue.m in Sources */,
 				97B5E6DB1C8BB9CD000B4554 /* DetailViewController.m in Sources */,
+				97B5E6FD1C8BBC93000B4554 /* Transport.m in Sources */,
+				97AAB76C1C8BDD0400FD3E5C /* VenueCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,6 +426,7 @@
 				97B5E6F41C8BB9CD000B4554 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		97B5E6F51C8BB9CD000B4554 /* Build configuration list for PBXNativeTarget "DiningPlacesTests" */ = {
 			isa = XCConfigurationList;
@@ -416,6 +435,7 @@
 				97B5E6F71C8BB9CD000B4554 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
