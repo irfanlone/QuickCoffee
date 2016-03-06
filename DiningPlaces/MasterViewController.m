@@ -24,6 +24,8 @@
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) CLLocation * currentLocation;
 @property (nonatomic, strong) NSIndexPath * selectedIndexpath;
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
+
 @end
 
 
@@ -37,6 +39,20 @@
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     [self.locationManager requestWhenInUseAuthorization];
     [self.locationManager startUpdatingLocation];
+}
+
+-(void)loadView {
+    [super loadView];
+    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    self.activityIndicator.color = [UIColor grayColor];
+    [self.view addSubview:self.activityIndicator];
+    [self.activityIndicator startAnimating];
+}
+
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
+    CGRect viewBounds = self.tableView.bounds;
+    self.activityIndicator.center = CGPointMake(CGRectGetMidX(viewBounds), CGRectGetMidY(viewBounds));
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -66,6 +82,7 @@
             [self createVenueObjecsFromResponseData:jsonArray];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadData];
+                [self.activityIndicator stopAnimating];
             });
         }
     }];
@@ -93,6 +110,11 @@
         newObj.usersCount = [[venueItem valueForKey:@"contact"] valueForKey:@"usersCount"];
         [self.venues addObject:newObj];
     }
+    
+    // sort the list based on distance
+    [self.venues sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        return [[obj1 distance] compare:[obj2 distance]];
+    }];
 }
 
 #pragma locationManager
@@ -129,7 +151,8 @@
     Venue * venueItem = [self.venues objectAtIndex:indexPath.row];
     cell.venueName.text = venueItem.name;
     cell.venueAddresss.text = venueItem.address;
-    cell.venueDistance.text = [venueItem.distance stringValue];
+    float miles = [venueItem.distance integerValue] / 1000.0;
+    cell.venueDistance.text = [NSString stringWithFormat:@"%0.2f miles",miles];
     return cell;
 }
 

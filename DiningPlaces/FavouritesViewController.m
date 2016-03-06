@@ -10,11 +10,13 @@
 #import "Venue.h"
 #import "VenueCell.h"
 #import "AppDelegate.h"
+#import "DetailViewController.h"
 
 @interface FavouritesViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @property(nonatomic, strong) NSMutableArray<Venue*> * favouriteVenues;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) NSIndexPath * selectedIndexpath;
 
 @end
 
@@ -51,7 +53,8 @@
     Venue * venueItem = [self.favouriteVenues objectAtIndex:indexPath.row];
     cell.venueName.text = venueItem.name;
     cell.venueAddresss.text = venueItem.address;
-    cell.venueDistance.text = [venueItem.distance stringValue];
+    float miles = [venueItem.distance integerValue] / 1000.0;
+    cell.venueDistance.text = [NSString stringWithFormat:@"%0.2f miles",miles];
     return cell;
 }
 
@@ -79,12 +82,16 @@
     }
 }
 
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    self.selectedIndexpath = indexPath;
+    [self performSegueWithIdentifier:@"FavouritesShowDetail" sender:self];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
 
 - (NSArray *)managedObjectsForClass:(NSString *)className InManagedObjectContext:(NSManagedObjectContext*)moc {
     __block NSArray *results = nil;
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:className];
-    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"createdAt" ascending:YES];
     fetchRequest.sortDescriptors = @[ sort ];
     NSPredicate *predicate = nil;
     [fetchRequest setPredicate:predicate];
@@ -106,14 +113,15 @@
         [self.favouriteVenues addObject:newVenue];
     }
 }
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
+#pragma mark - Segues
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([[segue identifier] isEqualToString:@"FavouritesShowDetail"]) {
+        DetailViewController * deatailVC = [segue destinationViewController];
+        deatailVC.venue = self.favouriteVenues[self.selectedIndexpath.row];
+    }
 }
-*/
+
 
 @end
