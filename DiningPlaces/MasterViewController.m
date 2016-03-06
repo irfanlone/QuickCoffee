@@ -11,13 +11,17 @@
 #import "Transport.h"
 #import "Venue.h"
 #import "VenueCell.h"
+#import <CoreLocation/CoreLocation.h>
+
 
 #define kCLIENTID @"2M4QBWYTS5GO3EJGQYK3USK5XM0JZ0SFBELQBQPAKUFKXQ2L"
 #define kCLIENTSECRET @"TNYFKM4SNJVC4QTOZ2HWOZEUQGSXWZNCR0EYMHPOQNTF4GHG"
 
-@interface MasterViewController ()
+@interface MasterViewController ()<CLLocationManagerDelegate>
 
 @property (nonatomic,strong) NSMutableArray<Venue*> * venues;
+@property (nonatomic,strong) CLLocationManager *locationManager;
+@property (nonatomic,strong) CLLocation * currentLocation;
 
 @end
 
@@ -26,13 +30,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    self.locationManager.distanceFilter = kCLLocationAccuracyHundredMeters;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    [self.locationManager requestWhenInUseAuthorization];
+    [self.locationManager startUpdatingLocation];
 
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    self.navigationItem.rightBarButtonItem = addButton;
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
-    [self loadVenues];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -42,28 +47,33 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
+
+/*
+ NSURL * url = [NSURL URLWithString:@"https://api.foursquare.com/v2/venues/search?categoryId=4bf58dd8d48988d1e0931735&client_id=TZM5LRSRF1QKX1M2PK13SLZXRXITT2GNMB1NN34ZE3PVTJKT&client_secret=250PUUO4N5P0ARWUJTN2KHSW5L31ZGFDITAUNFWVB5Q4WJWY&ll=37.33%2C-122.03&v=20140118"];
+ */
 - (void)loadVenues {
-    //NSString * baseUrl = @"https://api.foursquare.com/";
-    //NSString * operation = @"v2/venues/search?";
-    //categoryId=4bf58dd8d48988d1e0931735&client_id=TZM5LRSRF1QKX1M2PK13SLZXRXITT2GNMB1NN34ZE3PVTJKT&client_secret=250PUUO4N5P0ARWUJTN2KHSW5L31ZGFDITAUNFWVB5Q4WJWY&ll=37.33%2C-122.03&v=20160101
-    NSURL * url = [NSURL URLWithString:@"https://api.foursquare.com/v2/venues/search?categoryId=4bf58dd8d48988d1e0931735&client_id=TZM5LRSRF1QKX1M2PK13SLZXRXITT2GNMB1NN34ZE3PVTJKT&client_secret=250PUUO4N5P0ARWUJTN2KHSW5L31ZGFDITAUNFWVB5Q4WJWY&ll=37.33%2C-122.03&v=20140118"];
+    NSString * baseUrl = @"https://api.foursquare.com/";
+    NSString * operation = @"v2/venues/search?";
+    NSString * categoryId = @"4bf58dd8d48988d1e0931735";
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"yyyyMMdd"];
+    NSString * dateStr = [dateFormat stringFromDate:[NSDate date]];
+    NSString * urlString = [NSString stringWithFormat:@"%@%@categoryId=%@&client_id=%@&client_secret=%@&ll=%f%%2C%f&v=%@",baseUrl,operation,categoryId,kCLIENTID,kCLIENTSECRET,self.currentLocation.coordinate.latitude,self.currentLocation.coordinate.longitude,dateStr];
+    NSURL * url = [NSURL URLWithString:urlString];
+    
     NSMutableURLRequest * request = [[NSMutableURLRequest alloc] initWithURL:url];
     Transport * transport = [[Transport alloc] init];
     [transport retrieve:request completionBlock:^(BOOL success, TransportResponseObject *responseObject) {
         if(success) {
             NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:responseObject.data options:0 error:nil];
-            // create venue objects from the response data
             [self createVenueObjecsFromResponseData:jsonArray];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadData];
             });
         }
     }];
-    
-    
 }
 
 - (void)createVenueObjecsFromResponseData:(NSArray*)jsonArray {
@@ -90,13 +100,14 @@
     }
 }
 
-- (void)insertNewObject:(id)sender {
-//    if (!self.objects) {
-//        self.objects = [[NSMutableArray alloc] init];
-//    }
-//    [self.objects insertObject:[NSDate date] atIndex:0];
-//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-//    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+#pragma locationManager
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+    if(!self.currentLocation) {
+        self.currentLocation = [[CLLocation alloc] init];
+    }
+    self.currentLocation = newLocation;
+    [self loadVenues];
 }
 
 #pragma mark - Segues
@@ -129,20 +140,6 @@
     cell.venueAddresss.text = venueItem.address;
     cell.venueDistance.text = [venueItem.distance stringValue];
     return cell;
-}
-
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-//        [self.objects removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-    }
 }
 
 @end
