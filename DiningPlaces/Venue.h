@@ -10,10 +10,11 @@
 
 @interface Venue : NSObject
 
+@property (nonatomic, strong) NSString * identifier;
 @property (nonatomic, strong) NSString * name;
 @property (nonatomic, strong) NSString * address;
 @property (nonatomic, strong) NSString * website;
-@property (nonatomic, strong) NSString * menu;
+@property (nonatomic, strong) NSString * menuUrl;
 @property (nonatomic, strong) NSString * phoneNumber;
 @property (nonatomic, strong) NSNumber * checkins;
 @property (nonatomic, strong) NSNumber * usersCount;

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		972DC1181C8C28DC00606466 /* FavouritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 972DC1171C8C28DC00606466 /* FavouritesViewController.m */; };
+		972DC11B1C8C2B6100606466 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 972DC1191C8C2B6100606466 /* Model.xcdatamodeld */; };
 		97AAB76C1C8BDD0400FD3E5C /* VenueCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 97AAB76B1C8BDD0400FD3E5C /* VenueCell.m */; };
 		97B5E6D21C8BB9CD000B4554 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 97B5E6D11C8BB9CD000B4554 /* main.m */; };
 		97B5E6D51C8BB9CD000B4554 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 97B5E6D41C8BB9CD000B4554 /* AppDelegate.m */; };
@@ -31,6 +33,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		972DC1161C8C28DC00606466 /* FavouritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavouritesViewController.h; sourceTree = "<group>"; };
+		972DC1171C8C28DC00606466 /* FavouritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavouritesViewController.m; sourceTree = "<group>"; };
+		972DC11A1C8C2B6100606466 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		97AAB76A1C8BDD0400FD3E5C /* VenueCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VenueCell.h; sourceTree = "<group>"; };
 		97AAB76B1C8BDD0400FD3E5C /* VenueCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueCell.m; sourceTree = "<group>"; };
 		97B5E6CD1C8BB9CD000B4554 /* DiningPlaces.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiningPlaces.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,6 +115,8 @@
 				97B5E6F91C8BBB60000B4554 /* Venue.m */,
 				97AAB76A1C8BDD0400FD3E5C /* VenueCell.h */,
 				97AAB76B1C8BDD0400FD3E5C /* VenueCell.m */,
+				972DC1161C8C28DC00606466 /* FavouritesViewController.h */,
+				972DC1171C8C28DC00606466 /* FavouritesViewController.m */,
 			);
 			path = DiningPlaces;
 			sourceTree = "<group>";
@@ -117,6 +124,7 @@
 		97B5E6D01C8BB9CD000B4554 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				972DC1191C8C2B6100606466 /* Model.xcdatamodeld */,
 				97B5E6D11C8BB9CD000B4554 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -235,6 +243,8 @@
 				97B5E6D81C8BB9CD000B4554 /* MasterViewController.m in Sources */,
 				97B5E6D21C8BB9CD000B4554 /* main.m in Sources */,
 				97B5E6FA1C8BBB60000B4554 /* Venue.m in Sources */,
+				972DC1181C8C28DC00606466 /* FavouritesViewController.m in Sources */,
+				972DC11B1C8C2B6100606466 /* Model.xcdatamodeld in Sources */,
 				97B5E6DB1C8BB9CD000B4554 /* DetailViewController.m in Sources */,
 				97B5E6FD1C8BBC93000B4554 /* Transport.m in Sources */,
 				97AAB76C1C8BDD0400FD3E5C /* VenueCell.m in Sources */,
@@ -438,6 +448,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		972DC1191C8C2B6100606466 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				972DC11A1C8C2B6100606466 /* Model.xcdatamodel */,
+			);
+			currentVersion = 972DC11A1C8C2B6100606466 /* Model.xcdatamodel */;
+			name = Model.xcdatamodeld;
+			path = "Supporting Files/Model.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 97B5E6C51C8BB9CD000B4554 /* Project object */;
 }

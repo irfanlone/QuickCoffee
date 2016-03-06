@@ -12,6 +12,7 @@
 #import "Venue.h"
 #import "VenueCell.h"
 #import <CoreLocation/CoreLocation.h>
+#import "DetailViewController.h"
 
 
 #define kCLIENTID @"2M4QBWYTS5GO3EJGQYK3USK5XM0JZ0SFBELQBQPAKUFKXQ2L"
@@ -19,10 +20,10 @@
 
 @interface MasterViewController ()<CLLocationManagerDelegate>
 
-@property (nonatomic,strong) NSMutableArray<Venue*> * venues;
-@property (nonatomic,strong) CLLocationManager *locationManager;
-@property (nonatomic,strong) CLLocation * currentLocation;
-
+@property (nonatomic, strong) NSMutableArray<Venue*> * venues;
+@property (nonatomic, strong) CLLocationManager *locationManager;
+@property (nonatomic, strong) CLLocation * currentLocation;
+@property (nonatomic, strong) NSIndexPath * selectedIndexpath;
 @end
 
 
@@ -36,8 +37,6 @@
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     [self.locationManager requestWhenInUseAuthorization];
     [self.locationManager startUpdatingLocation];
-
-    self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -49,10 +48,6 @@
     [super didReceiveMemoryWarning];
 }
 
-
-/*
- NSURL * url = [NSURL URLWithString:@"https://api.foursquare.com/v2/venues/search?categoryId=4bf58dd8d48988d1e0931735&client_id=TZM5LRSRF1QKX1M2PK13SLZXRXITT2GNMB1NN34ZE3PVTJKT&client_secret=250PUUO4N5P0ARWUJTN2KHSW5L31ZGFDITAUNFWVB5Q4WJWY&ll=37.33%2C-122.03&v=20140118"];
- */
 - (void)loadVenues {
     NSString * baseUrl = @"https://api.foursquare.com/";
     NSString * operation = @"v2/venues/search?";
@@ -92,7 +87,7 @@
         newObj.address = venueAddr;
         newObj.distance = [address valueForKey:@"distance"];
         newObj.website = [venueItem valueForKey:@"url"];
-        newObj.menu = [[venueItem valueForKey:@"menu"] valueForKey:@"mobileUrl"];
+        newObj.menuUrl = [[venueItem valueForKey:@"menu"] valueForKey:@"mobileUrl"];
         newObj.phoneNumber = [[venueItem valueForKey:@"contact"] valueForKey:@"formattedPhone"];
         newObj.checkins = [[venueItem valueForKey:@"stats"] valueForKey:@"checkinsCount"];
         newObj.usersCount = [[venueItem valueForKey:@"contact"] valueForKey:@"usersCount"];
@@ -114,12 +109,8 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
-//        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-//        NSDate *object = self.objects[indexPath.row];
-//        DetailViewController *controller = (DetailViewController *)[[segue destinationViewController] topViewController];
-//        [controller setDetailItem:object];
-//        controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
-//        controller.navigationItem.leftItemsSupplementBackButton = YES;
+        DetailViewController * deatailVC = [segue destinationViewController];
+        deatailVC.venue = self.venues[self.selectedIndexpath.row];
     }
 }
 
@@ -140,6 +131,12 @@
     cell.venueAddresss.text = venueItem.address;
     cell.venueDistance.text = [venueItem.distance stringValue];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    self.selectedIndexpath = indexPath;
+    [self performSegueWithIdentifier:@"showDetail" sender:self];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end
