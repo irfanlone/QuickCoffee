@@ -23,6 +23,11 @@ NSString *const kRemoveStar = @"Un Star";
 @property (strong, nonnull) NSMutableArray * favouritesList;
 @property (strong, nonatomic) UIBarButtonItem * starButton;
 @property (strong, nonatomic) NSMutableArray * venuePhotosList;
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
+@property (weak, nonatomic) IBOutlet UIButton *callButton;
+@property (weak, nonatomic) IBOutlet UILabel *checkIns;
+@property (weak, nonatomic) IBOutlet UILabel *distance;
+
 @end
 
 @implementation DetailViewController
@@ -35,6 +40,19 @@ NSString *const kRemoveStar = @"Un Star";
     [self configureView];
 }
 
+-(void)loadView {
+    [super loadView];
+    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    self.activityIndicator.color = [UIColor redColor];
+    [self.view addSubview:self.activityIndicator];
+    [self.activityIndicator startAnimating];
+}
+
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
+    CGRect viewBounds = self.view.bounds;
+    self.activityIndicator.center = CGPointMake(CGRectGetMidX(viewBounds), CGRectGetMidY(viewBounds));
+}
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -61,6 +79,10 @@ NSString *const kRemoveStar = @"Un Star";
     self.navigationItem.rightBarButtonItem = self.starButton;
     self.name.text = self.venue.name;
     self.address.text = self.venue.address;
+    [self.callButton setTitle:self.venue.phoneNumber forState:UIControlStateNormal];
+    self.checkIns.text = [self.venue.checkins stringValue];
+    float distance = [self.venue.distance integerValue] / 1000.0;
+    self.distance.text = [NSString stringWithFormat:@"%0.2f miles",distance];
 }
 
 - (void)loadPhotos {
@@ -82,6 +104,7 @@ NSString *const kRemoveStar = @"Un Star";
             self.venuePhotosList = [photos valueForKey:@"items"];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.collectionView reloadData];
+                [self.activityIndicator stopAnimating];
             });
         }
     }];
@@ -179,6 +202,32 @@ NSString *const kRemoveStar = @"Un Star";
         newVenue.identifier = [obj valueForKey:@"identifier"];
         [self.favouritesList addObject:newVenue];
     }
+}
+
+#pragma mark - IBActions
+- (IBAction)menuPressed:(id)sender {
+    NSURL * url = [NSURL URLWithString:self.venue.menuUrl];
+    if (url) {
+        [[UIApplication sharedApplication] openURL:url];
+    }
+}
+
+- (IBAction)wesitePressed:(id)sender {
+    NSURL * url = [NSURL URLWithString:self.venue.website];
+    if (url) {
+        [[UIApplication sharedApplication] openURL:url];
+    }
+}
+
+- (IBAction)callThemPressed:(id)sender {
+    NSString * phoneNumber = [[[[self.venue.phoneNumber stringByReplacingOccurrencesOfString:@" "  withString:@""] stringByReplacingOccurrencesOfString:@"(" withString:@""] stringByReplacingOccurrencesOfString:@")" withString:@""] stringByReplacingOccurrencesOfString:@"-" withString:@""];
+    NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",phoneNumber]];
+    if (url) {
+        [[UIApplication sharedApplication] openURL:url];
+    }
+}
+
+- (IBAction)directionsPressed:(id)sender {
 }
 
 #pragma mark - UICollectionView Datasource
