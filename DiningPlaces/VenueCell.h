@@ -12,5 +12,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *venueName;
 @property (weak, nonatomic) IBOutlet UILabel *venueAddresss;
 @property (weak, nonatomic) IBOutlet UILabel *venueDistance;
+@property (weak, nonatomic) IBOutlet UILabel *openNowLabel;
 
 @end

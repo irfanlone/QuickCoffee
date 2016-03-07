@@ -14,6 +14,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "DetailViewController.h"
 #import "AppDelegate.h"
+#import "VenueHours.h"
 
 @interface MasterViewController ()<CLLocationManagerDelegate>
 
@@ -165,10 +166,20 @@
     cell.venueAddresss.text = venueItem.address;
     float miles = [venueItem.distance integerValue] / 1000.0;
     cell.venueDistance.text = [NSString stringWithFormat:@"%0.2f miles",miles];
+    if([VenueHours isVenueOpen:venueItem]) {
+        cell.openNowLabel.text = @" open ";
+    } else {
+        cell.openNowLabel.text = @" closed ";
+        cell.openNowLabel.textColor = [UIColor redColor];
+    }
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [VenueHours isVenueOpen:self.venues[indexPath.row]];
+
+    
     self.selectedIndexpath = indexPath;
     [self performSegueWithIdentifier:@"showDetail" sender:self];
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
