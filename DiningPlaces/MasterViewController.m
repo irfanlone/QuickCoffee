@@ -15,10 +15,6 @@
 #import "DetailViewController.h"
 #import "AppDelegate.h"
 
-
-#define kCLIENTID @"2M4QBWYTS5GO3EJGQYK3USK5XM0JZ0SFBELQBQPAKUFKXQ2L"
-#define kCLIENTSECRET @"TNYFKM4SNJVC4QTOZ2HWOZEUQGSXWZNCR0EYMHPOQNTF4GHG"
-
 @interface MasterViewController ()<CLLocationManagerDelegate>
 
 @property (nonatomic, strong) NSMutableArray<Venue*> * venues;
@@ -120,6 +116,7 @@
         newObj.phoneNumber = [[venueItem valueForKey:@"contact"] valueForKey:@"formattedPhone"];
         newObj.checkins = [[venueItem valueForKey:@"stats"] valueForKey:@"checkinsCount"];
         newObj.usersCount = [[venueItem valueForKey:@"contact"] valueForKey:@"usersCount"];
+        newObj.identifier = [venueItem valueForKey:@"id"];
         [self.venues addObject:newObj];
     }
     

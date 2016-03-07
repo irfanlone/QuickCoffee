@@ -68,7 +68,7 @@
         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         NSManagedObjectContext * moc = [appDelegate managedObjectContext];
         [moc performBlockAndWait:^{
-            NSManagedObjectID * objectID = (NSManagedObjectID*)itemToDelete.identifier;
+            NSManagedObjectID * objectID = (NSManagedObjectID*)itemToDelete.objectID;
             NSManagedObject * object =[moc existingObjectWithID:objectID error:nil];
             if (object) {
                 [moc deleteObject:object];
@@ -109,7 +109,8 @@
         newVenue.address = [obj valueForKey:@"address"];
         newVenue.website = [obj valueForKey:@"website"];
         newVenue.distance = [obj valueForKey:@"distance"];
-        newVenue.identifier = [obj valueForKey:@"objectID"];
+        newVenue.objectID = [obj valueForKey:@"objectID"];
+        newVenue.identifier = [obj valueForKey:@"identifier"];
         [self.favouriteVenues addObject:newVenue];
     }
 }
