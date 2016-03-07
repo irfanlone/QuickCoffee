@@ -20,5 +20,6 @@
 @property (nonatomic, strong) NSNumber * usersCount;
 @property (nonatomic, strong) NSNumber * distance;
 @property (nonatomic, strong) NSString * objectID;
+@property (nonatomic, strong) NSString * iconUrl;
 
 @end

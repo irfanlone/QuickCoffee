@@ -14,7 +14,6 @@
 #import <CoreLocation/CoreLocation.h>
 #import "DetailViewController.h"
 #import "AppDelegate.h"
-#import "VenueHours.h"
 
 @interface MasterViewController ()<CLLocationManagerDelegate>
 
@@ -118,6 +117,11 @@
         newObj.checkins = [[venueItem valueForKey:@"stats"] valueForKey:@"checkinsCount"];
         newObj.usersCount = [[venueItem valueForKey:@"contact"] valueForKey:@"usersCount"];
         newObj.identifier = [venueItem valueForKey:@"id"];
+        id categories = [venueItem valueForKey:@"categories"];
+        NSArray * icon = [categories valueForKey:@"icon"];
+        NSString * prefix = [[icon firstObject] valueForKey:@"prefix"];
+        NSString * suffix = [[icon firstObject] valueForKey:@"suffix"];
+        newObj.iconUrl = [NSString stringWithFormat:@"%@bg_64%@",prefix,suffix];
         [self.venues addObject:newObj];
     }
     
@@ -160,20 +164,26 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    VenueCell *cell = (VenueCell*)[tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    VenueCell *cell = [tableView dequeueReusableCellWithIdentifier:@"VenueCell" forIndexPath:indexPath];
     Venue * venueItem = [self.filteredVenueList objectAtIndex:indexPath.row];
     cell.venueName.text = venueItem.name;
     cell.venueAddresss.text = venueItem.address;
     float miles = [venueItem.distance integerValue] / 1000.0;
     cell.venueDistance.text = [NSString stringWithFormat:@"%0.2f miles",miles];
+//    NSMutableURLRequest * request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:venueItem.iconUrl]];
+//    Transport * transport = [[Transport alloc] init];
+//    [transport retrieve:request completionBlock:^(BOOL success, TransportResponseObject *responseObject) {
+//        if(success) {
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                UIImage * image = [UIImage imageWithData:responseObject.data];
+//                cell.imageView.image = image;
+//            });
+//        }
+//    }];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    [VenueHours isVenueOpen:self.venues[indexPath.row]];
-
-    
     self.selectedIndexpath = indexPath;
     [self performSegueWithIdentifier:@"showDetail" sender:self];
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];

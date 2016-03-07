@@ -12,7 +12,6 @@
 		972DC1241C8CCDED00606466 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 972DC1231C8CCDED00606466 /* SettingsViewController.m */; };
 		972DC1271C8CFCA000606466 /* PhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 972DC1261C8CFCA000606466 /* PhotoCell.m */; };
 		972DC12A1C8D045B00606466 /* PhotoFullScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 972DC1291C8D045B00606466 /* PhotoFullScreenViewController.m */; };
-		972DC12E1C8D2DCD00606466 /* VenueHours.m in Sources */ = {isa = PBXBuildFile; fileRef = 972DC12D1C8D2DCD00606466 /* VenueHours.m */; };
 		97AAB76C1C8BDD0400FD3E5C /* VenueCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 97AAB76B1C8BDD0400FD3E5C /* VenueCell.m */; };
 		97B5E6D21C8BB9CD000B4554 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 97B5E6D11C8BB9CD000B4554 /* main.m */; };
 		97B5E6D51C8BB9CD000B4554 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 97B5E6D41C8BB9CD000B4554 /* AppDelegate.m */; };
@@ -46,8 +45,6 @@
 		972DC1261C8CFCA000606466 /* PhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoCell.m; sourceTree = "<group>"; };
 		972DC1281C8D045B00606466 /* PhotoFullScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoFullScreenViewController.h; sourceTree = "<group>"; };
 		972DC1291C8D045B00606466 /* PhotoFullScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoFullScreenViewController.m; sourceTree = "<group>"; };
-		972DC12C1C8D2DCD00606466 /* VenueHours.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VenueHours.h; sourceTree = "<group>"; };
-		972DC12D1C8D2DCD00606466 /* VenueHours.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueHours.m; sourceTree = "<group>"; };
 		97AAB76A1C8BDD0400FD3E5C /* VenueCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VenueCell.h; sourceTree = "<group>"; };
 		97AAB76B1C8BDD0400FD3E5C /* VenueCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueCell.m; sourceTree = "<group>"; };
 		97B5E6CD1C8BB9CD000B4554 /* DiningPlaces.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiningPlaces.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -135,8 +132,6 @@
 				972DC1261C8CFCA000606466 /* PhotoCell.m */,
 				972DC1281C8D045B00606466 /* PhotoFullScreenViewController.h */,
 				972DC1291C8D045B00606466 /* PhotoFullScreenViewController.m */,
-				972DC12C1C8D2DCD00606466 /* VenueHours.h */,
-				972DC12D1C8D2DCD00606466 /* VenueHours.m */,
 			);
 			path = DiningPlaces;
 			sourceTree = "<group>";
@@ -270,7 +265,6 @@
 				97B5E6DB1C8BB9CD000B4554 /* DetailViewController.m in Sources */,
 				972DC1241C8CCDED00606466 /* SettingsViewController.m in Sources */,
 				97B5E6FD1C8BBC93000B4554 /* Transport.m in Sources */,
-				972DC12E1C8D2DCD00606466 /* VenueHours.m in Sources */,
 				97AAB76C1C8BDD0400FD3E5C /* VenueCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -209,6 +209,11 @@ NSString *const kRemoveStar = @"Un Star";
     NSURL * url = [NSURL URLWithString:self.venue.menuUrl];
     if (url) {
         [[UIApplication sharedApplication] openURL:url];
+    } else {
+        UIAlertController *userAlert = [UIAlertController alertControllerWithTitle:@"No Menu Available" message:[NSString stringWithFormat:@"Menu for this place is not available"] preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+        [userAlert addAction:action];
+        [self presentViewController:userAlert animated:YES completion:nil];
     }
 }
 
@@ -216,6 +221,11 @@ NSString *const kRemoveStar = @"Un Star";
     NSURL * url = [NSURL URLWithString:self.venue.website];
     if (url) {
         [[UIApplication sharedApplication] openURL:url];
+    } else {
+        UIAlertController *userAlert = [UIAlertController alertControllerWithTitle:@"Webiste Not Available" message:[NSString stringWithFormat:@"Website for this place is not available"] preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+        [userAlert addAction:action];
+        [self presentViewController:userAlert animated:YES completion:nil];
     }
 }
 
@@ -224,6 +234,11 @@ NSString *const kRemoveStar = @"Un Star";
     NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",phoneNumber]];
     if (url) {
         [[UIApplication sharedApplication] openURL:url];
+    } else {
+        UIAlertController *userAlert = [UIAlertController alertControllerWithTitle:@"No Phone Available" message:[NSString stringWithFormat:@"Phone number for this place is not available"] preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+        [userAlert addAction:action];
+        [self presentViewController:userAlert animated:YES completion:nil];
     }
 }
 
@@ -270,9 +285,7 @@ NSString *const kRemoveStar = @"Un Star";
     NSDictionary * photoItem = self.venuePhotosList[indexPath.row];
     NSString * prefix = [photoItem valueForKey:@"prefix"];
     NSString * suffix = [photoItem valueForKey:@"suffix"];
-    NSString * photoWidth = [photoItem valueForKey:@"width"];
-    NSString * photoHeight = [photoItem valueForKey:@"height"];
-    NSString * photoSize = [NSString stringWithFormat:@"%@x%@",photoWidth,photoHeight];
+    NSString * photoSize = [NSString stringWithFormat:@"%@x%@",[photoItem valueForKey:@"width"],[photoItem valueForKey:@"height"]];
     NSString * imageUrl = [NSString stringWithFormat:@"%@%@%@",prefix,photoSize,suffix];
     NSURL * url = [NSURL URLWithString:imageUrl];
     fvc.imageUrl = url;
