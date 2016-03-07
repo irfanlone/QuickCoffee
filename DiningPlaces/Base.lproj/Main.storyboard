@@ -163,10 +163,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ilh-iU-TjA">
-                                <rect key="frame" x="261" y="204" width="78" height="44"/>
+                                <rect key="frame" x="252.5" y="204" width="95" height="44"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="TVC-hf-lK2"/>
-                                    <constraint firstAttribute="width" constant="78" id="z2M-Z0-3ok"/>
+                                    <constraint firstAttribute="width" constant="95" id="z2M-Z0-3ok"/>
                                 </constraints>
                                 <state key="normal" title="Apply Filter"/>
                                 <connections>
@@ -188,6 +189,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" image="second" id="Hd0-2V-E0o"/>
                     <connections>
+                        <outlet property="applyFilterButton" destination="Ilh-iU-TjA" id="grJ-ph-ElG"/>
                         <outlet property="distanceSlider" destination="FhU-zR-kxF" id="v3d-Ie-SFp"/>
                         <outlet property="filterRadius" destination="DSm-E3-PCy" id="IPo-tJ-JTJ"/>
                     </connections>
@@ -230,27 +232,21 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h0c-Xg-39Q">
-                                            <rect key="frame" x="29" y="8" width="453" height="20.5"/>
+                                            <rect key="frame" x="29" y="8" width="508" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C5w-UI-DTO">
-                                            <rect key="frame" x="29" y="32.5" width="453" height="16"/>
+                                            <rect key="frame" x="29" y="32.5" width="508" height="16"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kOz-UX-ICK">
-                                            <rect key="frame" x="29" y="53.5" width="453" height="16"/>
+                                            <rect key="frame" x="29" y="53.5" width="508" height="16"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="closed now" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EXO-vK-Bxm">
-                                            <rect key="frame" x="503" y="11.5" width="64" height="14.5"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -258,19 +254,16 @@
                                         <constraint firstItem="C5w-UI-DTO" firstAttribute="trailing" secondItem="h0c-Xg-39Q" secondAttribute="trailing" id="9e7-H2-nUV"/>
                                         <constraint firstItem="C5w-UI-DTO" firstAttribute="leading" secondItem="h0c-Xg-39Q" secondAttribute="leading" id="Cq4-fr-vcQ"/>
                                         <constraint firstItem="kOz-UX-ICK" firstAttribute="leading" secondItem="C5w-UI-DTO" secondAttribute="leading" id="EE2-RV-3i9"/>
-                                        <constraint firstAttribute="trailing" secondItem="h0c-Xg-39Q" secondAttribute="trailing" constant="85" id="KAg-qG-8ZJ"/>
-                                        <constraint firstItem="h0c-Xg-39Q" firstAttribute="centerY" secondItem="EXO-vK-Bxm" secondAttribute="centerY" id="MrJ-tC-2VE"/>
+                                        <constraint firstAttribute="trailing" secondItem="h0c-Xg-39Q" secondAttribute="trailing" constant="30" id="KAg-qG-8ZJ"/>
                                         <constraint firstItem="h0c-Xg-39Q" firstAttribute="leading" secondItem="37f-cq-3Eg" secondAttribute="leading" constant="29" id="r9m-12-aBd"/>
                                         <constraint firstItem="kOz-UX-ICK" firstAttribute="trailing" secondItem="C5w-UI-DTO" secondAttribute="trailing" id="sxN-0m-ydm"/>
                                         <constraint firstItem="C5w-UI-DTO" firstAttribute="top" secondItem="h0c-Xg-39Q" secondAttribute="bottom" constant="4" id="vOc-Ce-y7S"/>
                                         <constraint firstItem="kOz-UX-ICK" firstAttribute="top" secondItem="C5w-UI-DTO" secondAttribute="bottom" constant="5" id="wj3-o6-SV7"/>
-                                        <constraint firstAttribute="trailing" secondItem="EXO-vK-Bxm" secondAttribute="trailing" id="wnS-H1-mSu"/>
                                         <constraint firstItem="h0c-Xg-39Q" firstAttribute="top" secondItem="37f-cq-3Eg" secondAttribute="top" constant="8" id="ySR-gz-W70"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <outlet property="openNowLabel" destination="EXO-vK-Bxm" id="Sdd-ZR-gaJ"/>
                                     <outlet property="venueAddresss" destination="C5w-UI-DTO" id="rKi-Sn-Z01"/>
                                     <outlet property="venueDistance" destination="kOz-UX-ICK" id="uFH-Dz-dDD"/>
                                     <outlet property="venueName" destination="h0c-Xg-39Q" id="Huy-iU-HJk"/>

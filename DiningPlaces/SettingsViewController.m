@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *filterRadius;
 @property (weak, nonatomic) IBOutlet UISlider *distanceSlider;
 @property (strong, nonatomic) NSNumber * filterValue;
+@property (weak, nonatomic) IBOutlet UIButton *applyFilterButton;
 
 @end
 
@@ -20,6 +21,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[self.applyFilterButton layer] setBorderWidth:1.0f];
+    [[self.applyFilterButton layer] setBorderColor:[UIColor darkGrayColor].CGColor];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

@@ -166,12 +166,6 @@
     cell.venueAddresss.text = venueItem.address;
     float miles = [venueItem.distance integerValue] / 1000.0;
     cell.venueDistance.text = [NSString stringWithFormat:@"%0.2f miles",miles];
-    if([VenueHours isVenueOpen:venueItem]) {
-        cell.openNowLabel.text = @" open ";
-    } else {
-        cell.openNowLabel.text = @" closed ";
-        cell.openNowLabel.textColor = [UIColor redColor];
-    }
     return cell;
 }
 
